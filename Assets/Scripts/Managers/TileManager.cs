@@ -16,7 +16,7 @@ public class TileManager : Singleton<TileManager>
     [SerializeField] private ScriptableLevel[] _level;
 
     [Header("Misc")]
-    [SerializeField] private bool _debug = false;
+    // [SerializeField] private bool _debug = false;
     [SerializeField] private float _distanceBetweenTiles = 1f;
 
     public int CurrentLevel { get; private set; } = 0;

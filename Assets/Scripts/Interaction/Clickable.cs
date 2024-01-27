@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class Clickable : MonoBehaviour
 {
 
-    [SerializeFiled] private OnClick _onClick = new();
+    [SerializeField] private OnClick _onClick = new();
 
     private void Start()
     {
