@@ -22,4 +22,19 @@ public class Particles : MonoBehaviour
     {
         _visualEffects.Stop();
     }
+
+    public void Toggle()
+    {
+        var list = new List<string>();
+        _visualEffects.GetSpawnSystemNames(list);
+        var vinfo = _visualEffects.GetSpawnSystemInfo(list[0]);
+        if (vinfo.playing)
+        {
+            _visualEffects.Stop();
+        }
+        else
+        {
+            _visualEffects.Play();
+        }
+    }
 }
