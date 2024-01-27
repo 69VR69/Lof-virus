@@ -15,7 +15,6 @@ public class LevelManagerEditor : Editor
         {
             var level = (levelManager.CurrentLevel + 1) % levelManager.LevelNumber;
             Debug.Log("Generating next level " + level);
-            levelManager.GenerateLevel(level);
         }
 
         if (Application.isPlaying && GUILayout.Button("Regenerate Level"))
