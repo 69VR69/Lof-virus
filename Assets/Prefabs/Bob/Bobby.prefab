@@ -537,6 +537,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vizu
       objectReference: {fileID: 0}
+    - target: {fileID: 7614065406313262687, guid: 455e504b080bf144cb6d1222acf3adb9,
+        type: 3}
+      propertyPath: _speed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7657979332639997509, guid: 455e504b080bf144cb6d1222acf3adb9,
         type: 3}
       propertyPath: _rayLength

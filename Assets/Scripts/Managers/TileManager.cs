@@ -8,8 +8,13 @@ public class TileManager : Singleton<TileManager>
 {
     [Header("Tiles")]
     [SerializeField] private Transform _levelEnvironment;
-    [SerializeField] private TileScript _walkableTile;
+    [SerializeField] private TileScript _centerWalkableTile;
+    [SerializeField] private TileScript _lineWalkableTile;
+
     [SerializeField] private TileScript _wallTile;
+    [SerializeField] private TileScript _wallTileVariant;
+
+    [SerializeField] private GameObject[] _decorations;
 
     private Transform _bonommParent;
 
@@ -27,6 +32,9 @@ public class TileManager : Singleton<TileManager>
     // [SerializeField] private bool _debug = false;
     [SerializeField] private float _distanceBetweenTiles = 1f;
     public float DistanceBetweenTiles => _distanceBetweenTiles;
+
+    [SerializeField] private float _decoRatio = .1f;
+    [SerializeField] private float _wallVariantRatio = .1f;
 
     public int CurrentLevel { get; private set; } = 0;
     public int LevelNumber => _level.Length;
@@ -82,7 +90,7 @@ public class TileManager : Singleton<TileManager>
                 switch (line[(int)pos.x])
                 {
                     case '_':
-                        CreateWalkableTile(pos);
+                        CreateWalkableTile(pos, true);
                         break;
                     case ' ':
                         // Leave a space
@@ -94,6 +102,12 @@ public class TileManager : Singleton<TileManager>
                         CreateWalkableTile(pos);
                         CreatePotiBonomm(pos);
                         break;
+                    case '2':
+                        CreateWalkableLineTile(pos);
+                        break;
+                    case '3':
+                        CreateWalkableLineTile(pos, true);
+                        break;
                     default:
                         throw new System.Exception("Not recognized tile in TileManager");
                 }
@@ -101,6 +115,16 @@ public class TileManager : Singleton<TileManager>
             height++;
         }
         
+    }
+
+    private void CreateWalkableLineTile(Vector2 pos, bool v = false)
+    {
+        var tile = Instantiate(_lineWalkableTile, pos.ToTilePosition(_distanceBetweenTiles), Quaternion.identity, _levelEnvironment);
+        tile.X = (int)pos.x;
+        tile.Y = (int)pos.y;
+        tile.transform.Rotate(0, 90, 0);
+        if (v)
+            tile.transform.Rotate(0, 90, 0);
     }
 
     public void DestroyLevel()
@@ -115,12 +139,18 @@ public class TileManager : Singleton<TileManager>
         _bonommParent = parent.transform;
     }
 
-    private void CreateWalkableTile(Vector2 position)
+    private void CreateWalkableTile(Vector2 position, bool spawnDeco = false)
     {
-        var tile = Instantiate(_walkableTile, position.ToTilePosition(_distanceBetweenTiles), Quaternion.identity, _levelEnvironment);
+        var tile = Instantiate(_centerWalkableTile, position.ToTilePosition(_distanceBetweenTiles), Quaternion.identity, _levelEnvironment);
         tile.X = (int)position.x;
         tile.Y = (int)position.y;
 
+        if (spawnDeco && UnityEngine.Random.Range(0f, 1f) < _decoRatio)
+        {
+            var deco = Instantiate(_decorations[UnityEngine.Random.Range(0, _decorations.Length)], tile.transform);
+            deco.transform.localPosition = Vector3.zero.Where(y: 1);
+        }
+        
         _levelTiles.Add(tile);
     }
 
@@ -135,7 +165,7 @@ public class TileManager : Singleton<TileManager>
 
     private void CreateWall(Vector2 position)
     {
-        var wall = Instantiate(_wallTile, position.ToWallPosition(_distanceBetweenTiles), Quaternion.identity, _levelEnvironment);
+        var wall = Instantiate(UnityEngine.Random.Range(0f, 1f) < _wallVariantRatio ? _wallTileVariant : _wallTile, position.ToWallPosition(_distanceBetweenTiles), Quaternion.identity, _levelEnvironment);
         wall.X = (int)position.x;
         wall.Y = (int)position.y;
 
