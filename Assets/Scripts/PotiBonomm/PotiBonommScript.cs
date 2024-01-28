@@ -14,6 +14,7 @@ public class PotiBonommScript : MonoBehaviour, IPositionable
     public int Y { get => _y; set => _y = value; }
     public Particles Particles { get => _particles; set => _particles = value; }
     public DirectionScript DirectionScript { get => _directionScript; set => _directionScript = value; }
+    public Vector2Int LaughDirection { get => _laughDirection; set => _laughDirection = value; }
 
     [SerializeField] private Vector2Int _laughDirection = new();
     [SerializeField] private bool _isLaughing = false;
@@ -81,7 +82,7 @@ public class PotiBonommScript : MonoBehaviour, IPositionable
         if (_isLaughing) return;
 
         _isLaughing = true;
-        _laughDirection = direction;
+        LaughDirection = direction;
 
         Particles.Play();
 
@@ -91,7 +92,7 @@ public class PotiBonommScript : MonoBehaviour, IPositionable
                 if (gameState == GameManager.GameState.StartOfTurn)
                 {
                     TriggerLaugh();
-                    MovePosition(_laughDirection);
+                    MovePosition(LaughDirection);
                 }
                 else if (gameState == GameManager.GameState.AnimationTime)
                 {

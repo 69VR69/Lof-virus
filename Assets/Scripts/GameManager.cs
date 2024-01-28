@@ -15,16 +15,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private float _animationTime = 1f;
     public float AnimationTime { get => _animationTime; private set => _animationTime = value; }
     public OnGameStateChanged OnGameStateChanged { get => _onGameStateChanged; set => _onGameStateChanged = value; }
-
-    public void Start()
-    {
-
-    }
-
-    public void Update()
-    {
-    }
-
+    
     public void ChangeState(GameState newState)
     {
         _gameState = newState;

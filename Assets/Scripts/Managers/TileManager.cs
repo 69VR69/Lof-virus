@@ -14,6 +14,7 @@ public class TileManager : Singleton<TileManager>
     [SerializeField] private TileScript _wallTile;
     [SerializeField] private TileScript _wallTileVariant;
 
+    [SerializeField] private Mine _bombPrefab;
     [SerializeField] private GameObject[] _decorations;
 
     private Transform _bonommParent;
@@ -24,12 +25,12 @@ public class TileManager : Singleton<TileManager>
     [Header("Poti Bonomm")]
     [SerializeField] private PotiBonommScript _potiBonomm;
     private List<PotiBonommScript> _potiBonommList = new List<PotiBonommScript>();
+    private List<Mine> bombs = new List<Mine>();
 
     [Header("Levels")]
     [SerializeField] private ScriptableLevel[] _level;
 
     [Header("Misc")]
-    // [SerializeField] private bool _debug = false;
     [SerializeField] private float _distanceBetweenTiles = 1f;
     public float DistanceBetweenTiles => _distanceBetweenTiles;
 
@@ -108,6 +109,10 @@ public class TileManager : Singleton<TileManager>
                     case '3':
                         CreateWalkableLineTile(pos, true);
                         break;
+                    case 'x':
+                        CreateWalkableTile(pos);
+                        CreateBomb(pos);
+                        break;
                     default:
                         throw new System.Exception("Not recognized tile in TileManager");
                 }
@@ -115,6 +120,14 @@ public class TileManager : Singleton<TileManager>
             height++;
         }
         
+    }
+
+    private void CreateBomb(Vector2 pos)
+    {
+        var bomb = Instantiate(_bombPrefab, pos.ToTilePosition(_distanceBetweenTiles).Where(y: 1), Quaternion.identity, _levelEnvironment);
+        bomb.X = (int)pos.x;
+        bomb.Y = (int)pos.y;
+        bombs.Add(bomb);
     }
 
     private void CreateWalkableLineTile(Vector2 pos, bool v = false)
@@ -132,6 +145,7 @@ public class TileManager : Singleton<TileManager>
         _levelEnvironment.DestroyChildren();
         _levelTiles.Clear();
         PotiBonommList.Clear();
+        bombs.Clear();
         GameManager.Instance.ChangeState(GameManager.GameState.WaitingForMakeLaugh);
 
         var parent = Instantiate(new GameObject(), _levelEnvironment);
