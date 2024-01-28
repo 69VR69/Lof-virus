@@ -31,6 +31,8 @@ public class TileManager : Singleton<TileManager>
     public int CurrentLevel { get; private set; } = 0;
     public int LevelNumber => _level.Length;
 
+    public List<PotiBonommScript> PotiBonommList { get => _potiBonommList; set => _potiBonommList = value; }
+
     void Start()
     {
         GenerateLevel(0);
@@ -91,7 +93,7 @@ public class TileManager : Singleton<TileManager>
     {
         _levelEnvironment.DestroyChildren();
         _levelTiles.Clear();
-        _potiBonommList.Clear();
+        PotiBonommList.Clear();
         GameManager.Instance.ChangeState(GameManager.GameState.WaitingForMakeLaugh);
 
         var parent = Instantiate(new GameObject(), _levelEnvironment);
@@ -114,7 +116,7 @@ public class TileManager : Singleton<TileManager>
         potiBonomm.X = (int)position.x;
         potiBonomm.Y = (int)position.y;
 
-        _potiBonommList.Add(potiBonomm);
+        PotiBonommList.Add(potiBonomm);
     }
 
     private void CreateWall(Vector2 position)
@@ -131,7 +133,7 @@ public class TileManager : Singleton<TileManager>
         var tiles = _levelTiles.Where(t => t.X == move.x && t.Y == move.y).ToList();
         if (tiles.Count == 0) return false;
         var tile = tiles.First();
-        var isWalkableAndAvailable = tile.IsWalkable && _potiBonommList.Where(b => b.X == tile.X && b.Y == tile.Y).ToList().Count == 0;
+        var isWalkableAndAvailable = tile.IsWalkable && PotiBonommList.Where(b => b.X == tile.X && b.Y == tile.Y).ToList().Count == 0;
         return isWalkableAndAvailable;
     }
 
@@ -141,7 +143,7 @@ public class TileManager : Singleton<TileManager>
         var seenBonomms = new List<PotiBonommScript>();
 
         // Get all bonomms in the same line
-        var bonommsInLine = _potiBonommList.Where(b => (b.X == vector2.x || b.Y == vector2.y) && (b.X != vector2.x || b.Y != vector2.y)).ToList();
+        var bonommsInLine = PotiBonommList.Where(b => (b.X == vector2.x || b.Y == vector2.y) && (b.X != vector2.x || b.Y != vector2.y)).ToList();
 
         seenBonomms = bonommsInLine.Where(b =>
         {
