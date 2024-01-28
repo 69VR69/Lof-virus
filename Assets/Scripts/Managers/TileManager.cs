@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TileManager : Singleton<TileManager>
@@ -12,12 +13,17 @@ public class TileManager : Singleton<TileManager>
     private List<TileScript> _levelTiles = new();
     public List<TileScript> LevelTiles => _levelTiles;
 
+    [Header("Poti Bonomm")]
+    [SerializeField] private PotiBonommScript _potiBonomm;
+    private List<PotiBonommScript> _potiBonommList = new List<PotiBonommScript>();
+
     [Header("Levels")]
     [SerializeField] private ScriptableLevel[] _level;
 
     [Header("Misc")]
     // [SerializeField] private bool _debug = false;
     [SerializeField] private float _distanceBetweenTiles = 1f;
+    public float DistanceBetweenTiles => _distanceBetweenTiles;
 
     public int CurrentLevel { get; private set; } = 0;
     public int LevelNumber => _level.Length;
@@ -65,6 +71,10 @@ public class TileManager : Singleton<TileManager>
                     case '#':
                         CreateWall(pos);
                         break;
+                    case 'o':
+                        CreateWalkableTile(pos);
+                        CreatePotiBonomm(pos);
+                        break;
                     default:
                         throw new System.Exception("Not recognized tile in TileManager");
                 }
@@ -78,6 +88,7 @@ public class TileManager : Singleton<TileManager>
     {
         _levelEnvironment.DestroyChildren();
         _levelTiles.Clear();
+        _potiBonommList.Clear();
     }
 
     private void CreateWalkableTile(Vector2 position)
@@ -89,6 +100,13 @@ public class TileManager : Singleton<TileManager>
         _levelTiles.Add(tile);
     }
 
+    private void CreatePotiBonomm(Vector2 position)
+    {
+        var potiBonomm = Instantiate(_potiBonomm, position.ToPotiBonommPosition(_distanceBetweenTiles), Quaternion.identity, _levelEnvironment);
+        _potiBonomm.SetPosition((int)position.x, (int)position.y);
+        _potiBonommList.Add(potiBonomm);
+    }
+
     private void CreateWall(Vector2 position)
     {
         var wall = Instantiate(_wallTile, position.ToWallPosition(_distanceBetweenTiles), Quaternion.identity, _levelEnvironment);
@@ -96,5 +114,12 @@ public class TileManager : Singleton<TileManager>
         wall.Y = (int)position.y;
 
         _levelTiles.Add(wall);
+    }
+
+    public bool CheckMove(Vector2 move)
+    {
+        var tile = _levelTiles.Where(t => t.X == move.x && t.Y == move.y).First();
+        
+        return tile != null && tile.IsWalkable;
     }
 }
