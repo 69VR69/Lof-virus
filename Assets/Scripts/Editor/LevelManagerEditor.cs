@@ -16,14 +16,12 @@ public class LevelManagerEditor : Editor
             var level = (levelManager.CurrentLevel + 1) % levelManager.LevelNumber;
             Debug.Log("Generating next level " + level);
             levelManager.GenerateLevel(level);
-            GameManager.Instance.ChangeState(GameManager.GameState.WaitingForMakeLaugh);
         }
 
         if (Application.isPlaying && GUILayout.Button("Regenerate Level"))
         {
             Debug.Log("Regenerating level");
             levelManager.GenerateLevel(levelManager.CurrentLevel);
-            GameManager.Instance.ChangeState(GameManager.GameState.WaitingForMakeLaugh);
 
         }
     }

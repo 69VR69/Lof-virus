@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3854048796692114779}
   - component: {fileID: 6827997997197029307}
   - component: {fileID: 9206502657094094565}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SimpleTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}

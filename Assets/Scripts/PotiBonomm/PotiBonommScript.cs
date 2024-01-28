@@ -1,3 +1,4 @@
+using Assets;
 using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -14,10 +15,12 @@ public class PotiBonommScript : MonoBehaviour, IPositionable
     [SerializeField] private Vector2Int _laughDirection = new();
     [SerializeField] private bool _isLaughing = false;
 
+    [SerializeField] private BobMovement _bobMovement;
+    [SerializeField] private Clickable _clickable;
+
     void Start()
     {
-        var clickable = GetComponent<Clickable>();
-        clickable.OnClick.AddListener((e) => DebugMove());
+        _clickable.OnClick.AddListener((e) => DebugMove());
     }
     public void MovePosition(Vector2Int movement)
     {
@@ -32,6 +35,12 @@ public class PotiBonommScript : MonoBehaviour, IPositionable
     public void MoveTo(Vector2Int pos)
     {
         if (pos.x != X || pos.y != Y) return;
+
+        _bobMovement.SetRun(() =>
+        {
+            var v = new Vector3(pos.x, 0, pos.y);
+            return v;
+        });
         transform.DOLocalMove(pos.ToPotiBonommPosition(TileManager.Instance.DistanceBetweenTiles), GameManager.Instance.AnimationTime);
     }
 

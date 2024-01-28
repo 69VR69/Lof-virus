@@ -121,14 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7599521026712968362}
   - component: {fileID: 5520530885971903835}
-  - component: {fileID: 2532589751890803700}
-  - component: {fileID: 2406311301630554443}
-  - component: {fileID: 4584652924168329431}
-  - component: {fileID: 5015787473553371632}
-  - component: {fileID: 2770614369495974895}
-  - component: {fileID: 8008780585256899751}
   - component: {fileID: 3718897675364907484}
-  - component: {fileID: 4068536817561230952}
   m_Layer: 0
   m_Name: Bobby
   m_TagString: Untagged
@@ -161,165 +154,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4115481848615694814}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2532589751890803700
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4115481848615694814}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2406311301630554443
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4115481848615694814}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4584652924168329431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4115481848615694814}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5536ad5f8764f804fa7bdbf7e429b272, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _onClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2770614369495974895}
-        m_TargetAssemblyTypeName: Particles, Assembly-CSharp
-        m_MethodName: Toggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5015787473553371632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4115481848615694814}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8933e2f0f35bc0b41959305168acda98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _onHoverEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8008780585256899751}
-        m_TargetAssemblyTypeName: OutlineManager, Assembly-CSharp
-        m_MethodName: GrowOutline
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onHoverExit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8008780585256899751}
-        m_TargetAssemblyTypeName: OutlineManager, Assembly-CSharp
-        m_MethodName: RemoveOutline
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &2770614369495974895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4115481848615694814}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b60839a18eb2a84ba1ff9dffc718371, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _visualEffects: {fileID: 2404843998707528165}
---- !u!114 &8008780585256899751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4115481848615694814}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28b677160dcbc6e439e4eb3cfd57d74e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _outlineMaterial: {fileID: 2100000, guid: 63c1e949d4bf2014b9f70b948c7f817c, type: 2}
-  _outlineScale: 1.1
 --- !u!114 &3718897675364907484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,20 +170,8 @@ MonoBehaviour:
   _y: 4
   _laughDirection: {x: 0, y: 0}
   _isLaughing: 0
---- !u!114 &4068536817561230952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4115481848615694814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a93f8ba28b4e5b747b45c45f670adcd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isSetUpdate: 0
-  _duration: 0.6
+  _bobMovement: {fileID: 1062171033250263942}
+  _clickable: {fileID: 8606181685349077199}
 --- !u!1001 &7428422362668932569
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -358,10 +180,35 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7599521026712968362}
     m_Modifications:
+    - target: {fileID: 127336000368809711, guid: 455e504b080bf144cb6d1222acf3adb9,
+        type: 3}
+      propertyPath: _rayLength
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 486634110717955924, guid: 455e504b080bf144cb6d1222acf3adb9,
+        type: 3}
+      propertyPath: _rayLength
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 593497569384655940, guid: 455e504b080bf144cb6d1222acf3adb9,
+        type: 3}
+      propertyPath: _rayLength
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3684425557684091108, guid: 455e504b080bf144cb6d1222acf3adb9,
         type: 3}
       propertyPath: m_Name
       value: Bob 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4748001361885742979, guid: 455e504b080bf144cb6d1222acf3adb9,
+        type: 3}
+      propertyPath: m_Name
+      value: Vizu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7657979332639997509, guid: 455e504b080bf144cb6d1222acf3adb9,
+        type: 3}
+      propertyPath: _rayLength
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8543204858817493844, guid: 455e504b080bf144cb6d1222acf3adb9,
         type: 3}
@@ -371,7 +218,7 @@ PrefabInstance:
     - target: {fileID: 8543204858817493844, guid: 455e504b080bf144cb6d1222acf3adb9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11
+      value: 11.1
       objectReference: {fileID: 0}
     - target: {fileID: 8543204858817493844, guid: 455e504b080bf144cb6d1222acf3adb9,
         type: 3}
@@ -433,7 +280,23 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5323388844352125710}
+    - targetCorrespondingSourceObject: {fileID: 8628023800985218001, guid: 455e504b080bf144cb6d1222acf3adb9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6817210529100132496}
   m_SourcePrefab: {fileID: 100100000, guid: 455e504b080bf144cb6d1222acf3adb9, type: 3}
+--- !u!114 &1062171033250263942 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7614065406313262687, guid: 455e504b080bf144cb6d1222acf3adb9,
+    type: 3}
+  m_PrefabInstance: {fileID: 7428422362668932569}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137fff27cecbfad498b189cc0720e72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1201312278413440520 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8628023800985218001, guid: 455e504b080bf144cb6d1222acf3adb9,
@@ -458,6 +321,18 @@ MonoBehaviour:
       - m_Target: {fileID: 5323388844352125710}
         m_TargetAssemblyTypeName: Particles, Assembly-CSharp
         m_MethodName: Toggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3718897675364907484}
+        m_TargetAssemblyTypeName: PotiBonommScript, Assembly-CSharp
+        m_MethodName: DebugMove
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -523,6 +398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _outlineMaterial: {fileID: 2100000, guid: 63c1e949d4bf2014b9f70b948c7f817c, type: 2}
   _outlineScale: 1.1
+  _renderer: {fileID: 6095039059095903750}
 --- !u!114 &5323388844352125710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,10 +411,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b60839a18eb2a84ba1ff9dffc718371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visualEffects: {fileID: 0}
+  _visualEffects: {fileID: 2404843998707528165}
+--- !u!65 &6817210529100132496
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201312278413440520}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: -11, z: 0}
 --- !u!4 &1267905433512060557 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8543204858817493844, guid: 455e504b080bf144cb6d1222acf3adb9,
+    type: 3}
+  m_PrefabInstance: {fileID: 7428422362668932569}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &6095039059095903750 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3711779126805906399, guid: 455e504b080bf144cb6d1222acf3adb9,
     type: 3}
   m_PrefabInstance: {fileID: 7428422362668932569}
   m_PrefabAsset: {fileID: 0}

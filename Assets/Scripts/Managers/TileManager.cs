@@ -92,6 +92,7 @@ public class TileManager : Singleton<TileManager>
         _levelEnvironment.DestroyChildren();
         _levelTiles.Clear();
         _potiBonommList.Clear();
+        GameManager.Instance.ChangeState(GameManager.GameState.WaitingForMakeLaugh);
 
         var parent = Instantiate(new GameObject(), _levelEnvironment);
         parent.name = "Bonomms";

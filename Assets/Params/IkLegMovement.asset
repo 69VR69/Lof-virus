@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615046aaa63042d48b7d40b325abefce, type: 3}
   m_Name: IkLegMovement
   m_EditorClassIdentifier: 
-  StepLength: 1
+  StepLength: 1.15
   StepThreshold: 1.59
-  StepHeight: 1.22
-  StepDuration: 1
+  StepHeight: 1.4
+  StepDuration: 2
   StepSpeedCurve:
     serializedVersion: 2
     m_Curve:

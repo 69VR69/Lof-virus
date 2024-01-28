@@ -9,6 +9,7 @@ public class OutlineManager : MonoBehaviour
     private int _outlineIndex;
 
     [SerializeField] private float _outlineScale = 1.05f;
+    [SerializeField] private Renderer _renderer;
 
     private bool _isOutlined = false;
 
@@ -20,7 +21,7 @@ public class OutlineManager : MonoBehaviour
         }
 
         // Add outline shader to gameObject
-        var renderer = GetComponent<Renderer>();
+        var renderer = _renderer ?? GetComponent<Renderer>();
         var oldMaterials = renderer.materials;
         var newMaterials = new Material[oldMaterials.Length + 1];
         for (int i = 0; i < oldMaterials.Length; i++)
@@ -54,7 +55,7 @@ public class OutlineManager : MonoBehaviour
         _isOutlined = outline;
 
         // Get Scale of outline
-        var renderer = GetComponent<Renderer>();
+        var renderer = _renderer ?? GetComponent<Renderer>();
         
         var scale = renderer.materials[_outlineIndex].GetFloat("_Scale");
 
