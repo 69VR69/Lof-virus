@@ -51,7 +51,6 @@ public class AudioSystem : StaticInstance<AudioSystem> {
 
     public void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
         if (instance == null)
         {
             instance = this;
