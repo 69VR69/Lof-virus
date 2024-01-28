@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 41487110510206522}
   - component: {fileID: 8716535168173605945}
   - component: {fileID: 4042742649172982322}
+  - component: {fileID: 6259080678920678649}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -80,6 +81,27 @@ MonoBehaviour:
   _audioSource: {fileID: 629812689185621715}
   _ejectionForce: 10
   _rigidbody: {fileID: 7962997031133293680}
+--- !u!65 &6259080678920678649
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385389795843728759}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 2.355053}
+  m_Center: {x: 0, y: 0, z: 0.13061047}
 --- !u!1 &1594418265273593538
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,6 +554,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: paravent_repar
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685279842778143752, guid: 91ccdca4c961370488435c408dac6d82,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685279842778143752, guid: 91ccdca4c961370488435c408dac6d82,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685279842778143752, guid: 91ccdca4c961370488435c408dac6d82,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7685279842778143752, guid: 91ccdca4c961370488435c408dac6d82,
         type: 3}

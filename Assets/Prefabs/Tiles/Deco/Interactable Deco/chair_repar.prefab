@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 229983661152988393}
   - component: {fileID: 8562865779195654200}
   - component: {fileID: 8030993539103078065}
+  - component: {fileID: 2072907375616543594}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -123,6 +124,27 @@ MonoBehaviour:
   _audioSource: {fileID: 6705093812640820488}
   _ejectionForce: 10
   _rigidbody: {fileID: 1238984859949571049}
+--- !u!65 &2072907375616543594
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2796218650073884507}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3657598400251107676
 GameObject:
   m_ObjectHideFlags: 0
