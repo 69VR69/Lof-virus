@@ -22,6 +22,7 @@ public class LevelManagerEditor : Editor
         {
             Debug.Log("Regenerating level");
             levelManager.GenerateLevel(levelManager.CurrentLevel);
+
         }
     }
 }

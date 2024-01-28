@@ -17,8 +17,8 @@ public class Hoverable : MonoBehaviour
     public void Start()
     {
         _hoverState = HoverState.None;
-        _onHoverEnter.AddListener(e => Debug.Log("Hover Enter"));
-        _onHoverExit.AddListener(e => Debug.Log("Hover Exit"));
+        // _onHoverEnter.AddListener(e => Debug.Log("Hover Enter"));
+        // _onHoverExit.AddListener(e => Debug.Log("Hover Exit"));
     }
 
     void Update()

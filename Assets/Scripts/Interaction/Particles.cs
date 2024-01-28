@@ -15,6 +15,7 @@ public class Particles : MonoBehaviour
 
     public void Play()
     {
+        _visualEffects.enabled = true;
         _visualEffects.Play();
     }
 
@@ -29,12 +30,8 @@ public class Particles : MonoBehaviour
         _visualEffects.GetSpawnSystemNames(list);
         var vinfo = _visualEffects.GetSpawnSystemInfo(list[0]);
         if (vinfo.playing)
-        {
-            _visualEffects.Stop();
-        }
+            Stop();
         else
-        {
-            _visualEffects.Play();
-        }
+            Play();
     }
 }

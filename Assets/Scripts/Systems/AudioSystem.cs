@@ -8,6 +8,10 @@ public class AudioSystem : StaticInstance<AudioSystem> {
     [SerializeField] private AudioSource _musicSource;
     [SerializeField] private AudioSource _soundsSource;
 
+    [SerializeField] private AudioSource _chillMusic;
+    [SerializeField] private AudioSource _drunkMusic;
+
+
     public void PlayMusic(AudioClip clip) {
         _musicSource.clip = clip;
         _musicSource.Play();
@@ -20,5 +24,36 @@ public class AudioSystem : StaticInstance<AudioSystem> {
 
     public void PlaySound(AudioClip clip, float vol = 1) {
         _soundsSource.PlayOneShot(clip, vol);
+    }
+
+    public void Awake()
+    {
+        _drunkMusic.Stop();
+        _chillMusic.Play();
+    }
+
+    public void OnStateChange(GameManager.GameState state)
+    {
+        if(state == GameManager.GameState.StartOfTurn)
+        {
+            if (!_drunkMusic.isPlaying)
+            {
+                _chillMusic.Stop();
+                _drunkMusic.Play();
+            }
+        }
+        else if(state == GameManager.GameState.Win || state == GameManager.GameState.GameOver)
+        {
+            _drunkMusic.Stop();
+            _chillMusic.Play();
+        }
+        else if (state == GameManager.GameState.WaitingForMakeLaugh)
+        {
+            if (!_chillMusic.isPlaying)
+            {
+                _drunkMusic.Stop();
+                _chillMusic.Play();
+            }
+        }
     }
 }

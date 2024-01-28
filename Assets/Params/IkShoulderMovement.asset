@@ -15,7 +15,7 @@ MonoBehaviour:
   StepLength: 3.75
   StepThreshold: 9.69
   StepHeight: 1.22
-  StepDuration: 1
+  StepDuration: 2
   StepSpeedCurve:
     serializedVersion: 2
     m_Curve:

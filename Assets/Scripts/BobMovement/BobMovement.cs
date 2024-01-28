@@ -38,6 +38,16 @@ namespace Assets
         /// <param name="getDirection">Give a lambda that will calculate the direction</param>
         public void SetRun(Func<Vector3> getDirection = null)
         {
+            var d = getDirection() switch
+            {
+                Vector3 a when a.x > 0 => 90,
+                Vector3 a when a.x < 0 => -90,
+                Vector3 a when a.z > 0 => 180,
+                Vector3 a when a.z < 0 => 0,
+            };
+
+            transform.localEulerAngles = new Vector3().Where(y: d);
+
             _ikRig.LegPreset.StepDuration /= _speed;
             _ikRig.ShoulderPreset.StepDuration /= _speed;
 

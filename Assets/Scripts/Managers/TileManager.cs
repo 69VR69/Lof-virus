@@ -1,30 +1,64 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TileManager : Singleton<TileManager>
 {
     [Header("Tiles")]
     [SerializeField] private Transform _levelEnvironment;
-    [SerializeField] private TileScript _walkableTile;
+    [SerializeField] private TileScript _centerWalkableTile;
+    [SerializeField] private TileScript _lineWalkableTile;
+
     [SerializeField] private TileScript _wallTile;
+    [SerializeField] private TileScript _wallTileVariant;
+
+    [SerializeField] private Mine _bombPrefab;
+    [SerializeField] private GameObject[] _decorations;
+
+    private Transform _bonommParent;
 
     private List<TileScript> _levelTiles = new();
     public List<TileScript> LevelTiles => _levelTiles;
+
+    [Header("Poti Bonomm")]
+    [SerializeField] private PotiBonommScript _potiBonomm;
+    private List<PotiBonommScript> _potiBonommList = new List<PotiBonommScript>();
+    private List<Mine> bombs = new List<Mine>();
 
     [Header("Levels")]
     [SerializeField] private ScriptableLevel[] _level;
 
     [Header("Misc")]
-    // [SerializeField] private bool _debug = false;
     [SerializeField] private float _distanceBetweenTiles = 1f;
+    public float DistanceBetweenTiles => _distanceBetweenTiles;
+
+    [SerializeField] private float _decoRatio = .1f;
+    [SerializeField] private float _wallVariantRatio = .1f;
 
     public int CurrentLevel { get; private set; } = 0;
     public int LevelNumber => _level.Length;
 
+    public List<PotiBonommScript> PotiBonommList { get => _potiBonommList; set => _potiBonommList = value; }
+
     void Start()
     {
         GenerateLevel(0);
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GenerateLevel(CurrentLevel);
+        }
+        else if (Input.GetKeyDown(KeyCode.N))
+        {
+            var level = (CurrentLevel + 1) % LevelNumber;
+
+            GenerateLevel(level);
+        }
     }
 
 
@@ -57,13 +91,27 @@ public class TileManager : Singleton<TileManager>
                 switch (line[(int)pos.x])
                 {
                     case '_':
-                        CreateWalkableTile(pos);
+                        CreateWalkableTile(pos, true);
                         break;
                     case ' ':
                         // Leave a space
                         break;
                     case '#':
                         CreateWall(pos);
+                        break;
+                    case 'o':
+                        CreateWalkableTile(pos);
+                        CreatePotiBonomm(pos);
+                        break;
+                    case '2':
+                        CreateWalkableLineTile(pos);
+                        break;
+                    case '3':
+                        CreateWalkableLineTile(pos, true);
+                        break;
+                    case 'x':
+                        CreateWalkableTile(pos);
+                        CreateBomb(pos);
                         break;
                     default:
                         throw new System.Exception("Not recognized tile in TileManager");
@@ -74,27 +122,100 @@ public class TileManager : Singleton<TileManager>
         
     }
 
+    private void CreateBomb(Vector2 pos)
+    {
+        var bomb = Instantiate(_bombPrefab, pos.ToTilePosition(_distanceBetweenTiles).Where(y: 1), Quaternion.identity, _levelEnvironment);
+        bomb.X = (int)pos.x;
+        bomb.Y = (int)pos.y;
+        bombs.Add(bomb);
+    }
+
+    private void CreateWalkableLineTile(Vector2 pos, bool v = false)
+    {
+        var tile = Instantiate(_lineWalkableTile, pos.ToTilePosition(_distanceBetweenTiles), Quaternion.identity, _levelEnvironment);
+        tile.X = (int)pos.x;
+        tile.Y = (int)pos.y;
+        tile.transform.Rotate(0, 90, 0);
+        if (v)
+            tile.transform.Rotate(0, 90, 0);
+    }
+
     public void DestroyLevel()
     {
         _levelEnvironment.DestroyChildren();
         _levelTiles.Clear();
+        PotiBonommList.Clear();
+        bombs.Clear();
+        GameManager.Instance.ChangeState(GameManager.GameState.WaitingForMakeLaugh);
+
+        var parent = Instantiate(new GameObject(), _levelEnvironment);
+        parent.name = "Bonomms";
+        _bonommParent = parent.transform;
     }
 
-    private void CreateWalkableTile(Vector2 position)
+    private void CreateWalkableTile(Vector2 position, bool spawnDeco = false)
     {
-        var tile = Instantiate(_walkableTile, position.ToTilePosition(_distanceBetweenTiles), Quaternion.identity, _levelEnvironment);
+        var tile = Instantiate(_centerWalkableTile, position.ToTilePosition(_distanceBetweenTiles), Quaternion.identity, _levelEnvironment);
         tile.X = (int)position.x;
         tile.Y = (int)position.y;
 
+        if (spawnDeco && UnityEngine.Random.Range(0f, 1f) < _decoRatio)
+        {
+            var deco = Instantiate(_decorations[UnityEngine.Random.Range(0, _decorations.Length)], tile.transform);
+            deco.transform.localPosition = Vector3.zero.Where(y: 1);
+        }
+        
         _levelTiles.Add(tile);
+    }
+
+    private void CreatePotiBonomm(Vector2 position)
+    {
+        var potiBonomm = Instantiate(_potiBonomm, position.ToTilePosition(_distanceBetweenTiles).Where(y:0), Quaternion.identity, _bonommParent);
+        potiBonomm.X = (int)position.x;
+        potiBonomm.Y = (int)position.y;
+
+        PotiBonommList.Add(potiBonomm);
     }
 
     private void CreateWall(Vector2 position)
     {
-        var wall = Instantiate(_wallTile, position.ToWallPosition(_distanceBetweenTiles), Quaternion.identity, _levelEnvironment);
+        var wall = Instantiate(UnityEngine.Random.Range(0f, 1f) < _wallVariantRatio ? _wallTileVariant : _wallTile, position.ToWallPosition(_distanceBetweenTiles), Quaternion.identity, _levelEnvironment);
         wall.X = (int)position.x;
         wall.Y = (int)position.y;
 
         _levelTiles.Add(wall);
+    }
+
+    public bool CheckMove(Vector2 move)
+    {
+        var tiles = _levelTiles.Where(t => t.X == move.x && t.Y == move.y).ToList();
+        if (tiles.Count == 0) return false;
+        var tile = tiles.First();
+        var isWalkableAndAvailable = tile.IsWalkable && PotiBonommList.Where(b => b.X == tile.X && b.Y == tile.Y).ToList().Count == 0;
+        return isWalkableAndAvailable;
+    }
+
+    public List<PotiBonommScript> GetSeenBonommsFrom(Vector2 vector2)
+    {
+        // See every bonomm in the same line or column AND is not blocked by a wall
+        var seenBonomms = new List<PotiBonommScript>();
+
+        // Get all bonomms in the same line
+        var bonommsInLine = PotiBonommList.Where(b => (b.X == vector2.x || b.Y == vector2.y) && (b.X != vector2.x || b.Y != vector2.y)).ToList();
+
+        seenBonomms = bonommsInLine.Where(b =>
+        {
+            var minX = Mathf.Min(vector2.x, b.X);
+            var maxX = Mathf.Max(vector2.x, b.X);
+            var minY = Mathf.Min(vector2.y, b.Y);
+            var maxY = Mathf.Max(vector2.y, b.Y);
+
+            var concernedTiles = _levelTiles.Where(t => !t.IsWalkable && (t.X >= minX && t.X <= maxX && t.Y >= minY && t.Y <= maxY)).ToList();
+            
+            return concernedTiles.Count == 0;
+        }).ToList();
+
+        return seenBonomms;
+
     }
 }
