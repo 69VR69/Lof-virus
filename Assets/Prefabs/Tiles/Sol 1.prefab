@@ -97,7 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _x: 0
   _y: 0
-  _isWalkable: 0
+  _isWalkable: 1
   _animateGrow: 1
   _animationDuration: 0.5
 --- !u!1001 &6275004233913325705

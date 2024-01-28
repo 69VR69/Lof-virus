@@ -10,9 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4afd3b2994871b64da1c1adaf69bd4ca, type: 3}
-  m_Name: LeftRule
+  m_Name: ZLeftRule
   m_EditorClassIdentifier: 
   _name: 
   _description: 
   _levelNumber: 0
-  _level: 
+  _level: '11111111111
+
+    10000002101
+
+    10010000201
+
+    10000000001
+
+    12000001101
+
+    10010002001
+
+    10020100001
+
+    10000200001
+
+    10000000001
+
+    11111111111'

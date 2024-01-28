@@ -47,12 +47,10 @@ public class Mine : MonoBehaviour, IPositionable
             case GameManager.GameState.StartOfTurn:
                 break;
             case GameManager.GameState.EndOfTurn:
-
                 if (CheckNextToPotibonomm())
                 {
                     Explode();
-                }    
-
+                }
                 break;
             case GameManager.GameState.GameOver:
                 break;
@@ -70,8 +68,6 @@ public class Mine : MonoBehaviour, IPositionable
     private bool CheckNextToPotibonomm()
     {
         var adjacentBonomms = FindAdjacentPotiBonomms();
-        Debug.LogError("adjacentBonomms.Count: " + adjacentBonomms.Count);
-
         return adjacentBonomms.Count > 0;
     }
 

@@ -1344,7 +1344,7 @@ GameObject:
   - component: {fileID: 1545041828}
   m_Layer: 0
   m_Name: Tile Manager
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1385,22 +1385,25 @@ MonoBehaviour:
     type: 3}
   _wallTileVariant: {fileID: 7267441416896610753, guid: 8a7f02c2c68ea5040b124817eb30a2d1,
     type: 3}
-  _bombPrefab: {fileID: 3368804289208695480, guid: bf1dcf12955666948a554fdd519b3347,
+  _bombPrefab: {fileID: 3368804289208695480, guid: 00b015ffdbbeb4240994a484b8688823,
     type: 3}
   _decorations:
-  - {fileID: 6786971042631553264, guid: d216c20e25853ad459d2c118736b34f1, type: 3}
-  - {fileID: 5807291694070418013, guid: 4ccfa53069863a5459257bcefd673909, type: 3}
-  - {fileID: 8989041710152408597, guid: 742e8ff4ba536d942ac55b9a1d271d7f, type: 3}
-  - {fileID: 7417518663105958877, guid: 2a216f363fc079142b0aad5ddcd6e1e1, type: 3}
-  - {fileID: 7056095946613098162, guid: 91ccdca4c961370488435c408dac6d82, type: 3}
+  - {fileID: 6541047760899535542, guid: d2af0207bd157b54db97ef5fb67efd47, type: 3}
+  - {fileID: 5541616404314640788, guid: f543d5d035fd49d47b8430c0d9a0a836, type: 3}
+  - {fileID: 5341879744468764556, guid: 17c744f679147f448b5da4d0ec7cd35a, type: 3}
+  - {fileID: 2946335087361694956, guid: aa102465bdec4be468c39e06cda60cf8, type: 3}
+  - {fileID: 1594418265273593538, guid: 51c166edc10a32244b2c427e770d16a6, type: 3}
   _potiBonomm: {fileID: 3718897675364907484, guid: e922cab484dbcd446b66ca002b945198,
     type: 3}
   _level:
-  - {fileID: 11400000, guid: b6585a9e14322294aa007f65dcd841e0, type: 2}
-  - {fileID: 11400000, guid: 1eac2a27b5d812d4cb7f240f159c664f, type: 2}
-  - {fileID: 11400000, guid: 90e1d35932f0afa4ba9552606ec24137, type: 2}
-  - {fileID: 11400000, guid: cc68149c427ca49438fa1405dfdfe210, type: 2}
-  - {fileID: 11400000, guid: 0ac466876b198a34da9df17162c97a2f, type: 2}
+  - {fileID: 11400000, guid: 86d6bce21d4a8b1428dfb5c10b965903, type: 2}
+  - {fileID: 11400000, guid: a3db221438744a348a76780905aa0e57, type: 2}
+  - {fileID: 11400000, guid: 8827e661ed7f82d47851132fd3318cd2, type: 2}
+  - {fileID: 11400000, guid: 2f9ee983d001bd643875b9063b47d6b1, type: 2}
+  - {fileID: 11400000, guid: d1e86ad7161057a409d6865562c2bede, type: 2}
+  - {fileID: 11400000, guid: 6749ffd569676364b823873d67ef025e, type: 2}
+  - {fileID: 11400000, guid: a703d547244cdf848ad811e807adb01d, type: 2}
+  - {fileID: 11400000, guid: fb9b18007b054924d852a28b80a1fcd0, type: 2}
   _distanceBetweenTiles: 2
   _decoRatio: 0.1
   _wallVariantRatio: 0.1
@@ -1622,7 +1625,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _animationTime: 2
+  _animationTime: 0.5
 --- !u!1001 &1163341469288570650
 PrefabInstance:
   m_ObjectHideFlags: 0

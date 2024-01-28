@@ -89,31 +89,31 @@ public class TileManager : Singleton<TileManager>
                 // foreach character in line
                 switch (line[(int)pos.x])
                 {
-                    case '_':
+                    case '0':
                         CreateWalkableTile(pos, true);
                         break;
                     case ' ':
                         // Leave a space
                         break;
-                    case '#':
+                    case '1':
                         CreateWall(pos);
                         break;
-                    case 'o':
+                    case '2':
                         CreateWalkableTile(pos);
                         CreatePotiBonomm(pos);
                         break;
-                    case '2':
-                        CreateWalkableLineTile(pos);
-                        break;
                     case '3':
-                        CreateWalkableLineTile(pos, true);
+                        CreateWalkableTile(pos, true);
                         break;
-                    case 'x':
+                    case '4':
+                        CreateWalkableTile(pos, true);
+                        break;
+                    case '5':
                         CreateWalkableTile(pos);
                         CreateBomb(pos);
                         break;
                     default:
-                        throw new System.Exception("Not recognized tile in TileManager");
+                        break;
                 }
             }
             height++;
