@@ -46,6 +46,20 @@ public class TileManager : Singleton<TileManager>
         GenerateLevel(0);
     }
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GenerateLevel(CurrentLevel);
+        }
+        else if (Input.GetKeyDown(KeyCode.N))
+        {
+            var level = (CurrentLevel + 1) % LevelNumber;
+
+            GenerateLevel(level);
+        }
+    }
+
 
     public void GenerateLevel(int levelNumber)
     {
