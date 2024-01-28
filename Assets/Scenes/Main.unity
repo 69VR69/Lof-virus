@@ -1385,7 +1385,7 @@ MonoBehaviour:
     type: 3}
   _wallTileVariant: {fileID: 7267441416896610753, guid: 8a7f02c2c68ea5040b124817eb30a2d1,
     type: 3}
-  _bombPrefab: {fileID: 3707066686696060287, guid: b9b36230ebfb2fa4689dbe053b53949f,
+  _bombPrefab: {fileID: 3368804289208695480, guid: bf1dcf12955666948a554fdd519b3347,
     type: 3}
   _decorations:
   - {fileID: 6786971042631553264, guid: d216c20e25853ad459d2c118736b34f1, type: 3}

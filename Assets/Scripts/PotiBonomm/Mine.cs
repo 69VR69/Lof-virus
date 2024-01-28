@@ -14,6 +14,7 @@ public class Mine : MonoBehaviour, IPositionable
     private float _fartDelay = 1.5f;
     [SerializeField]
     private string _collisionTag;
+    [SerializeField] private AudioSource _audioSource;
 
     [SerializeField] private int _x;
     [SerializeField] private int _y;
@@ -23,12 +24,14 @@ public class Mine : MonoBehaviour, IPositionable
 
     private void Awake()
     {
+        _audioSource = GetComponent<AudioSource>();
         _fart = GetComponent<VisualEffect>();
         _light = GetComponent<Light>();
     }
 
     private void Start()
     {
+        _audioSource.Stop();
         _fart.enabled = true;
         _fart.Stop();
         _light.enabled = true;
@@ -96,6 +99,9 @@ public class Mine : MonoBehaviour, IPositionable
             var dir = new Vector2Int(b.X - X, b.Y - Y);
             b.LaughDirection = dir;
         });
+
+        _audioSource.Play();
+        this.DelayAction(() => Destroy(gameObject), 1.5f);
 
     }
 
