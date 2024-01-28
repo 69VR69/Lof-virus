@@ -29,6 +29,18 @@ public class SwitchMenu : MonoBehaviour
      */
     public void SwitchToGame()
     {
+        AudioSystem.instance.PlaySFX(0);
         SceneManager.LoadScene("Main");
+    }
+
+    /**
+     * Function for switching to menu game scene
+     * 
+     * @return void
+     */
+    public void SwitchToMainMenu()
+    {
+        AudioSystem.instance.PlaySFX(0);
+        SceneManager.LoadScene("SceneMenuUi");
     }
 }
