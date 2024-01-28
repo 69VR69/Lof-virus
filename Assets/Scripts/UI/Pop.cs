@@ -12,6 +12,7 @@ public class Pop : MonoBehaviour
     void Start()
     {
         PopIn();
+        PopIn2();
     }
 
     private void OnEnable()
@@ -24,6 +25,12 @@ public class Pop : MonoBehaviour
     {
         transform.localScale = Vector3.zero;
         transform.DOScale(new Vector3(1, 1, 1), _duration).SetEase(Ease.InSine).SetUpdate(_isSetUpdate);
+    }
+
+    private void PopIn2()
+    {
+        transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+        transform.DOScale(new Vector3(1, 1, 1), _duration).SetEase(Ease.OutSine).SetLoops(-1, LoopType.Yoyo); 
     }
     
 }

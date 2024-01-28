@@ -23,9 +23,9 @@ public class Bangeable : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (collision.gameObject.CompareTag("Player"))
         {
             StartCoroutine(Eject());
         }

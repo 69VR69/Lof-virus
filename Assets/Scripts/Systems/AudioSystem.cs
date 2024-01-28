@@ -5,11 +5,16 @@ using UnityEngine;
 /// Ensure you change the 'Sounds' audio source to use 3D spatial blend if you intend to use 3D sounds.
 /// </summary>
 public class AudioSystem : StaticInstance<AudioSystem> {
+
+    public static AudioSystem instance;
+
     [SerializeField] private AudioSource _musicSource;
     [SerializeField] private AudioSource _soundsSource;
 
     [SerializeField] private AudioSource _chillMusic;
     [SerializeField] private AudioSource _drunkMusic;
+
+    [SerializeField] private AudioSource[] sound_fx;
 
 
     public void PlayMusic(AudioClip clip) {
@@ -26,8 +31,34 @@ public class AudioSystem : StaticInstance<AudioSystem> {
         _soundsSource.PlayOneShot(clip, vol);
     }
 
+    //Function for playing sounds FX
+    public void PlaySFX(int sfxToPlay, float pitch = 0.0f)
+    {
+        if (pitch == 0.0f)
+        {
+            if (sound_fx.Length > sfxToPlay)
+            {
+                sound_fx[sfxToPlay].pitch = Random.Range(0.85f, 1.20f);
+                sound_fx[sfxToPlay].Play();
+            }
+        }
+        else
+        {
+            sound_fx[sfxToPlay].pitch = pitch;
+            sound_fx[sfxToPlay].Play();
+        }
+    }
+
     public void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
         _drunkMusic.Stop();
         _chillMusic.Play();
     }
