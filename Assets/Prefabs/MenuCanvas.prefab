@@ -252,6 +252,7 @@ GameObject:
   - component: {fileID: 7198770892546871711}
   - component: {fileID: 1414005203499388540}
   - component: {fileID: 8340922077403987681}
+  - component: {fileID: 6656541314657240488}
   m_Layer: 5
   m_Name: Options
   m_TagString: Untagged
@@ -373,6 +374,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6656541314657240488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815409009712667373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a93f8ba28b4e5b747b45c45f670adcd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isSetUpdate: 1
+  _duration: 0.8
 --- !u!1 &2068666202358154334
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,6 +877,7 @@ GameObject:
   - component: {fileID: 902264055450115707}
   - component: {fileID: 4468084122193464937}
   - component: {fileID: 3938000165944561696}
+  - component: {fileID: 9059291568427474054}
   m_Layer: 5
   m_Name: Play
   m_TagString: Untagged
@@ -983,6 +999,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &9059291568427474054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3780792143764916498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a93f8ba28b4e5b747b45c45f670adcd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isSetUpdate: 1
+  _duration: 0.8
 --- !u!1 &3926431867968723978
 GameObject:
   m_ObjectHideFlags: 0
@@ -2037,6 +2067,7 @@ GameObject:
   - component: {fileID: 8220508584633371359}
   - component: {fileID: 4617129154140087400}
   - component: {fileID: 1205096793170568220}
+  - component: {fileID: 3526849881213862397}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -2145,7 +2176,33 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4617129154140087400}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4401291267315796477}
+        m_TargetAssemblyTypeName: SwitchMenu, Assembly-CSharp
+        m_MethodName: SwitchToMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3526849881213862397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9101668110518979856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a93f8ba28b4e5b747b45c45f670adcd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isSetUpdate: 1
+  _duration: 0.8
 --- !u!1 &9195927397673895006
 GameObject:
   m_ObjectHideFlags: 0
