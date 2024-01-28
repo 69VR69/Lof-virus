@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class SwitchMenu : MonoBehaviour
 {
-    //TODO add audiomanager instance (Singleton)
     
     /**
      * Function for switching menu
@@ -19,7 +18,7 @@ public class SwitchMenu : MonoBehaviour
         {
             transform.GetChild(i).gameObject.SetActive( false );
         }
-        //TODO add Audio Effect here!!!
+        AudioSystem.instance.PlaySFX(0);
         menu_ui.gameObject.SetActive( true );
     }
 
