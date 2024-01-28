@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615046aaa63042d48b7d40b325abefce, type: 3}
   m_Name: IkShoulderMovement
   m_EditorClassIdentifier: 
-  StepLength: 1
-  StepThreshold: 1.59
+  StepLength: 3.75
+  StepThreshold: 9.69
   StepHeight: 1.22
   StepDuration: 1
   StepSpeedCurve:
@@ -22,20 +22,38 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      inSlope: 0.767403
+      outSlope: 0.767403
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.36866575
+      value: 0.2829152
+      inSlope: 2.6297271
+      outSlope: 2.6297271
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.45922837
+      value: 0.68972707
+      inSlope: 2.5329053
+      outSlope: 2.5329053
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      inSlope: 0.5737597
+      outSlope: 0.5737597
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
