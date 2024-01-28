@@ -56,7 +56,6 @@ public class TileManager : Singleton<TileManager>
         else if (Input.GetKeyDown(KeyCode.N))
         {
             var level = (CurrentLevel + 1) % LevelNumber;
-
             GenerateLevel(level);
         }
     }

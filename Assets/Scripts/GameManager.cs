@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,7 +16,23 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private float _animationTime = 1f;
     public float AnimationTime { get => _animationTime; private set => _animationTime = value; }
     public OnGameStateChanged OnGameStateChanged { get => _onGameStateChanged; set => _onGameStateChanged = value; }
-    
+
+    private bool _winFlag = false;
+
+    private void Update()
+    {
+        if (State == GameState.Win && !_winFlag)
+        {
+            _winFlag = true;
+            this.DelayAction(() => {
+                var instance = TileManager.Instance;
+                var level = (instance.CurrentLevel + 1) % instance.LevelNumber;
+                instance.GenerateLevel(level);
+                _winFlag = false;
+            }, 2f);
+        }
+    }
+
     public void ChangeState(GameState newState)
     {
         _gameState = newState;
@@ -37,6 +54,11 @@ public class GameManager : Singleton<GameManager>
                 break;
             case GameState.EndOfTurn:
                 OnGameStateChanged.Invoke(GameState.EndOfTurn);
+                if (CheckWin())
+                {
+                    this.DelayAction(() => ChangeState(GameState.Win), 1f);
+                    return;
+                }
                 ChangeState(GameState.StartOfTurn);
                 break;
             case GameState.GameOver:
@@ -53,6 +75,16 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+
+    private bool CheckWin()
+    {
+        // If all potibonomms are laughing
+        Debug.Log("CheckWin ? ");
+        var potibonomms = TileManager.Instance.PotiBonommList;
+        var win = potibonomms.Where(p => p.IsLaughing).ToList().Count == potibonomms.Count;
+        if (win) Debug.Log("WIN :) ");
+        return win;
+    }
 
     public enum GameState
     {
