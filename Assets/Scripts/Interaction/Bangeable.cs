@@ -7,6 +7,10 @@ using UnityEngine;
 
 public class Bangeable : MonoBehaviour
 {
+    [SerializeField]
+    private AudioClip[] _audioClips;
+    [SerializeField]
+    private AudioSource _audioSource;
     private Rigidbody rb;
 
     [SerializeField]
@@ -34,6 +38,8 @@ public class Bangeable : MonoBehaviour
         _rigidbody.AddForce(force, ForceMode.VelocityChange);
         rb.AddForce(force, ForceMode.VelocityChange);
         rb.AddTorque(force, ForceMode.VelocityChange);
+        _audioSource.clip = _audioClips[Random.Range(0, _audioClips.Length)];
+        _audioSource.Play();
         yield return new WaitForSeconds(3);
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
