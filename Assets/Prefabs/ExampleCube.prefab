@@ -139,18 +139,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 3630388066250856914}
-        m_TargetAssemblyTypeName: PotiBonommScript, Assembly-CSharp
-        m_MethodName: DebugMove
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &7673710608245162549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,8 +220,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 497c441ba539068469b482df26a23147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _x: 2
-  _y: 1
+  _x: 5
+  _y: 4
+  _laughDirection: {x: 0, y: 0}
+  _isLaughing: 0
 --- !u!114 &3652055030766099481
 MonoBehaviour:
   m_ObjectHideFlags: 0
