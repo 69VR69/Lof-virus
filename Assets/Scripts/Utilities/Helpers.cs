@@ -33,6 +33,17 @@ public static class Helpers
         }
     }
 
+    public static void DelayAction(this MonoBehaviour monoBehaviour, System.Action action, float delay)
+    {
+        monoBehaviour.StartCoroutine(DelayActionCoroutine(delay, action));
+    }
+
+    private static IEnumerator<WaitForSeconds> DelayActionCoroutine(float delay, System.Action action)
+    {
+        yield return new WaitForSeconds(delay);
+        action();
+    }
+
     #region Vectors
     
     public static Vector3 Where(this Vector3 v, float? x = null, float? y = null, float? z = null)
@@ -48,6 +59,11 @@ public static class Helpers
     public static Vector3 ToWallPosition(this Vector2 v, float distanceBetweenTiles = 1f)
     {
         return new Vector3(v.x * distanceBetweenTiles, -.5f, v.y * distanceBetweenTiles);
+    }
+
+    public static Vector3 ToPotiBonommPosition(this Vector2 v, float distanceBetweenTiles = 1f)
+    {
+        return new Vector3(v.x * distanceBetweenTiles, 0f, v.y * distanceBetweenTiles);
     }
 
     #endregion
