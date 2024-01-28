@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ public class TileManager : Singleton<TileManager>
     [SerializeField] private Transform _levelEnvironment;
     [SerializeField] private TileScript _walkableTile;
     [SerializeField] private TileScript _wallTile;
+
+    private Transform _bonommParent;
 
     private List<TileScript> _levelTiles = new();
     public List<TileScript> LevelTiles => _levelTiles;
@@ -89,6 +92,10 @@ public class TileManager : Singleton<TileManager>
         _levelEnvironment.DestroyChildren();
         _levelTiles.Clear();
         _potiBonommList.Clear();
+
+        var parent = Instantiate(new GameObject(), _levelEnvironment);
+        parent.name = "Bonomms";
+        _bonommParent = parent.transform;
     }
 
     private void CreateWalkableTile(Vector2 position)
@@ -102,8 +109,10 @@ public class TileManager : Singleton<TileManager>
 
     private void CreatePotiBonomm(Vector2 position)
     {
-        var potiBonomm = Instantiate(_potiBonomm, position.ToPotiBonommPosition(_distanceBetweenTiles), Quaternion.identity, _levelEnvironment);
-        _potiBonomm.SetPosition((int)position.x, (int)position.y);
+        var potiBonomm = Instantiate(_potiBonomm, position.ToTilePosition(_distanceBetweenTiles).Where(y:0), Quaternion.identity, _bonommParent);
+        potiBonomm.X = (int)position.x;
+        potiBonomm.Y = (int)position.y;
+
         _potiBonommList.Add(potiBonomm);
     }
 
@@ -118,8 +127,34 @@ public class TileManager : Singleton<TileManager>
 
     public bool CheckMove(Vector2 move)
     {
-        var tile = _levelTiles.Where(t => t.X == move.x && t.Y == move.y).First();
-        
-        return tile != null && tile.IsWalkable;
+        var tiles = _levelTiles.Where(t => t.X == move.x && t.Y == move.y).ToList();
+        if (tiles.Count == 0) return false;
+        var tile = tiles.First();
+        var isWalkableAndAvailable = tile.IsWalkable && _potiBonommList.Where(b => b.X == tile.X && b.Y == tile.Y).ToList().Count == 0;
+        return isWalkableAndAvailable;
+    }
+
+    public List<PotiBonommScript> GetSeenBonommsFrom(Vector2 vector2)
+    {
+        // See every bonomm in the same line or column AND is not blocked by a wall
+        var seenBonomms = new List<PotiBonommScript>();
+
+        // Get all bonomms in the same line
+        var bonommsInLine = _potiBonommList.Where(b => (b.X == vector2.x || b.Y == vector2.y) && (b.X != vector2.x || b.Y != vector2.y)).ToList();
+
+        seenBonomms = bonommsInLine.Where(b =>
+        {
+            var minX = Mathf.Min(vector2.x, b.X);
+            var maxX = Mathf.Max(vector2.x, b.X);
+            var minY = Mathf.Min(vector2.y, b.Y);
+            var maxY = Mathf.Max(vector2.y, b.Y);
+
+            var concernedTiles = _levelTiles.Where(t => !t.IsWalkable && (t.X >= minX && t.X <= maxX && t.Y >= minY && t.Y <= maxY)).ToList();
+            
+            return concernedTiles.Count == 0;
+        }).ToList();
+
+        return seenBonomms;
+
     }
 }

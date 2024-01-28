@@ -6,6 +6,7 @@ public class Clickable : MonoBehaviour
 {
 
     [SerializeField] private OnClick _onClick = new();
+    public OnClick OnClick { get => _onClick; private set => _onClick = value; }
 
     private void Start()
     {

@@ -61,6 +61,11 @@ public static class Helpers
         return new Vector3(v.x * distanceBetweenTiles, -.5f, v.y * distanceBetweenTiles);
     }
 
+    public static Vector3 ToPotiBonommPosition(this Vector2Int v, float distanceBetweenTiles = 1f)
+    {
+        return new Vector3(v.x * distanceBetweenTiles, 0f, v.y * distanceBetweenTiles);
+    }
+
     public static Vector3 ToPotiBonommPosition(this Vector2 v, float distanceBetweenTiles = 1f)
     {
         return new Vector3(v.x * distanceBetweenTiles, 0f, v.y * distanceBetweenTiles);

@@ -1671,8 +1671,8 @@ MonoBehaviour:
   _potiBonomm: {fileID: 3630388066250856914, guid: aa24c1311e875c94b8db094e8bffeeec,
     type: 3}
   _level:
-  - {fileID: 11400000, guid: 90e1d35932f0afa4ba9552606ec24137, type: 2}
   - {fileID: 11400000, guid: b6585a9e14322294aa007f65dcd841e0, type: 2}
+  - {fileID: 11400000, guid: 90e1d35932f0afa4ba9552606ec24137, type: 2}
   - {fileID: 11400000, guid: cc68149c427ca49438fa1405dfdfe210, type: 2}
   - {fileID: 11400000, guid: 0ac466876b198a34da9df17162c97a2f, type: 2}
   _distanceBetweenTiles: 2
@@ -1825,6 +1825,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameState: 0
+  _onGameStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
   _animationTime: 0.5
 --- !u!1001 &1163341469288570650
 PrefabInstance:

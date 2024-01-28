@@ -46,7 +46,6 @@ public class OutlineManager : MonoBehaviour
     {
         if (!_isOutlined)
             return;
-        Debug.Log("Removing outline");
         StartCoroutine(DoOutline(false));
     }
 

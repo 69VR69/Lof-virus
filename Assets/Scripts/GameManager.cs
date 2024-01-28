@@ -32,6 +32,7 @@ public class GameManager : Singleton<GameManager>
         switch (_gameState)
         {
             case GameState.WaitingForMakeLaugh:
+                OnGameStateChanged.Invoke(GameState.WaitingForMakeLaugh);
                 break;
             case GameState.StartOfTurn:
                 OnGameStateChanged.Invoke(GameState.StartOfTurn);
@@ -39,7 +40,9 @@ public class GameManager : Singleton<GameManager>
                 break;
             case GameState.AnimationTime:
                 OnGameStateChanged.Invoke(GameState.AnimationTime);
-                this.DelayAction(() => ChangeState(GameState.EndOfTurn), _animationTime);
+                this.DelayAction(() => {
+                        if (_gameState == GameState.AnimationTime) ChangeState(GameState.EndOfTurn);
+                    }, _animationTime);
                 break;
             case GameState.EndOfTurn:
                 OnGameStateChanged.Invoke(GameState.EndOfTurn);
@@ -75,6 +78,6 @@ public class GameManager : Singleton<GameManager>
 
 #region Events
 
-public class OnGameStateChanged : UnityEvent<GameManager.GameState> { }
+[Serializable] public class OnGameStateChanged : UnityEvent<GameManager.GameState> { }
 
 #endregion
